@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+hr.spacer {
+    margin: 2rem auto;
+    width: 0;
+}
+
+/* センターライン */
+hr.center-line {
+    border-top: 3px dashed forestGreen;
+    margin: 3rem auto;
+    width: 100%;
+}
+
+table {
+    margin: auto;
+}
+
+/* 総合成績 */
+table.table.total {
+    text-align: center;
+    width: 60%;
+}
+
+/* 馬券種別成績 */
+table.table.kind {
+    text-align: right;
+    width: 70%;
+}
+
+th {
+    text-align: center;
+}
+
+td.td-kind {
+    text-align: center;
+}

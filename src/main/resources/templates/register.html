@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{common/header :: head_fragment(title = 'データ登録', scripts = ~{}, links = ~{::link})}">
+    <link rel="stylesheet" th:href="@{/css/register.css}">
+</head>
+
+<body>
+<div class="container">
+    <h1>登録</h1>
+    <hr class="spacer"/>
+    <form th:action="@{/register}" method="post">
+        <table class="table table-hover purchase-date" th:object="${raceDetailForm}">
+            <h2 th:text="購入レース詳細"/>
+            <tr>
+                <td th:text="開催日"/>
+                <td colspan="2">
+                    <input id="purchase-date" class="date" th:field="*{purchaseDate}" type="date"/>
+                    <div th:if="${#fields.hasErrors('purchaseDate')}" th:text="必須入力です！"/>
+                </td>
+            </tr>
+            <!-- 競馬場 -->
+            <tr>
+                <td th:text="競馬場"/>
+                <td colspan="2">
+                    <input id="venue" class="text" th:field="*{venue}" type="text"/>
+                    <div th:if="${#fields.hasErrors('venue')}" th:text="20文字以内で入力してください！"/>
+                </td>
+            </tr>
+            <!-- レース番号 -->
+            <tr>
+                <td th:text="レース番号"/>
+                <td colspan="2">
+                    <!-- TODO: class="form-control"を付与してBootStrap然としたい -->
+                    <input id="race-no" class="number" th:field="*{raceNo}" type="number"/>
+                    <div th:if="${#fields.hasErrors('raceNo')}" th:text="1～12の数値で入力してください！"/>
+                </td>
+            </tr>
+            <!-- グレード -->
+            <tr>
+                <td th:text="グレード（G1、G2、G3、L、OPなど）"/>
+                <td colspan="2">
+                    <input id="grade" class="text" th:field="*{grade}" type="text"/>
+                    <div th:if="${#fields.hasErrors('grade')}" th:text="10文字以内で入力してください！"/>
+                </td>
+            </tr>
+            <!-- レース名 -->
+            <tr>
+                <td th:text="レース名"/>
+                <td colspan="2">
+                    <input id="race-name" class="text" th:field="*{raceName}" type="text"/>
+                    <div th:if="${#fields.hasErrors('raceName')}" th:text="30文字以内で入力してください！"/>
+                </td>
+            </tr>
+            <!-- コース -->
+            <tr>
+                <td th:text="コース（芝、ダート、障害）"/>
+                <td colspan="2">
+                    <input id="course" class="text" th:field="*{course}" type="text"/>
+                    <div th:if="${#fields.hasErrors('course')}" th:text="1～50の数値で入力してください！"/>
+                </td>
+            </tr>
+            <!-- 距離 -->
+            <tr>
+                <td th:text="距離"/>
+                <td colspan="2">
+                    <input id="distance" class="number" th:field="*{distance}" type="number"/>m
+                    <div th:if="${#fields.hasErrors('distance')}" th:text="1000～5000mで入力してください！"/>
+                </td>
+            </tr>
+            <!-- 馬場状態 -->
+            <tr>
+                <td th:text="馬場状態（良、稍重、重、不良）"/>
+                <td colspan="2">
+                    <input id="course-condition" class="text" th:field="*{courseCondition}" type="text"/>
+                    <div th:if="${#fields.hasErrors('courseCondition')}" th:text="2文字以内で入力してください！"/>
+                </td>
+            </tr>
+            <!-- 年齢 -->
+            <tr>
+                <td th:text="年齢（4歳上、2歳など）"/>
+                <td colspan="2">
+                    <input id="age" class="text" th:field="*{age}" type="text"/>
+                    <div th:if="${#fields.hasErrors('age')}" th:text="4文字以内で入力してください！"/>
+                </td>
+            </tr>
+            <!-- 重量 -->
+            <tr>
+                <td colspan="1" th:text="重量（ハンデ、馬齢、別定、定量）"/>
+                <td colspan="2">
+                    <input id="weight" class="text" th:field="*{weight}" type="text"/>
+                    <div th:if="${#fields.hasErrors('weight')}" th:text="3文字以内で入力してください！"/>
+                </td>
+            </tr>
+        </table>
+        <hr class="spacer"/>
+        <table class="table table-hover" th:object="${ticketDetailForm}">
+            <!-- ヘッダー -->
+            <h2 th:text="購入馬券情報"/>
+            <tr>
+                <th th:text="馬券種類"/>
+                <th th:text="購入点数"/>
+                <th th:text="購入額"/>
+            </tr>
+            <tr>
+                <td th:text="単勝"/>
+                <td>
+                    <input id="quantity-one-single" class="quantity" th:field="*{quantityOneSingle}" type="number"/>組
+                </td>
+                <td>
+                    <input id="stake-one-single" class="stake" th:field="*{stakeOneSingle}" type="number">00円
+                </td>
+            </tr>
+            <tr>
+                <td th:text="複勝"/>
+                <td><input id="quantity-one-multiple" class="quantity" th:field="*{quantityOneMultiple}" type="number">組
+                </td>
+                <td><input id="stake-one-multiple" class="stake" th:field="*{stakeOneMultiple}" type="number">00円</td>
+            </tr>
+            <tr>
+                <td th:text="馬単"/>
+                <td><input id="quantity-two-single" class="quantity" th:field="*{quantityTwoSingle}" type="number">組
+                </td>
+                <td><input id="stake-two-single" class="stake" th:field="*{stakeTwoSingle}" type="number">00円</td>
+            </tr>
+            <tr>
+                <td th:text="馬連"/>
+                <td><input id="quantity-two-multiple" class="quantity" th:field="*{quantityTwoMultiple}" type="number">組
+                </td>
+                <td><input id="stake-two-multiple" class="stake" th:field="*{stakeTwoMultiple}" type="number">00円</td>
+            </tr>
+            <tr>
+                <td th:text="三連単"/>
+                <td><input id="quantity-three-single" class="quantity" th:field="*{quantityThreeSingle}" type="number">組
+                </td>
+                <td><input id="stake-three-single" class="stake" th:field="*{stakeThreeSingle}" type="number">00円</td>
+            </tr>
+            <tr>
+                <td th:text="三連複"/>
+                <td><input id="quantity-three-multiple" class="quantity"
+                           th:field="*{quantityThreeMultiple}" type="number">組
+                </td>
+                <td><input id="stake-three-multiple" class="stake" th:field="*{stakeThreeMultiple}" type="number">00円
+                </td>
+            </tr>
+            <tr>
+                <td th:text="ワイド"/>
+                <td><input id="quantity-two-wide" class="quantity" th:field="*{quantityTwoWide}" type="number">組</td>
+                <td><input id="stake-two-wide" class="stake" th:field="*{stakeTwoWide}" type="number">00円</td>
+            </tr>
+            <tr>
+                <td th:text="枠連"/>
+                <td><input id="quantity-two-frame" class="quantity" th:field="*{quantityTwoFrame}" type="number">組</td>
+                <td><input id="stake-two-frame" class="stake" th:field="*{stakeTwoFrame}" type="number">00円</td>
+            </tr>
+        </table>
+        <hr class="spacer"/>
+        <!-- 戻る・登録・クリアボタンを追加する -->
+        <button type="button" onclick="goBack()">戻る</button>
+        <input type="submit" name="登録">
+        <button type="button" onclick="clear()">クリア</button>
+    </form>
+</div>
+<script th:src="@{/js/register.js}"></script>
+</body>
+</html>

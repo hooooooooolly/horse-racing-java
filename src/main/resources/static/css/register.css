@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+table {
+    margin: auto;
+}
+
+table.table {
+    width: 60%;
+}
+
+table.purchase-date {
+    margin: auto auto 50px auto;
+}
+
+input {
+    text-align: right;
+}
+
+input#distance {
+    margin-left: 14px;
+}
+
+input.number {
+    text-align: right;
+    width: 130px;
+}
+
+input.text {
+    padding: 0 17px 0 0;
+    width: 130px;
+}
+
+input.quantity {
+    text-align: right;
+    width: 50px;
+}
+
+input.stake {
+    text-align: right;
+    width: 100px;
+}
+
+hr.spacer {
+    margin: 20px auto;
+    width: 0;
+}

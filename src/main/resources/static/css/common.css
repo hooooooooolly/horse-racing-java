@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/**
+ * なし = タグに対して指定
+ * . = クラスに対して指定
+ * # = idに対して指定
+ */
+body {
+    background-color: lightGray;
+}
+
+.container {
+    background-color: #FFF;
+    margin: 20px auto;
+    padding: 10px;
+    text-align: center;
+    width: 50%;
+}
+
+.btn {
+    margin: 5px;
+    padding: 5px;
+}
