@@ -1,0 +1,52 @@
+src/main/java
+└── com
+    └── example
+        ├── MyApplication.java        # Spring Bootのメインアプリケーションクラス
+        ├── config                    # MyBatisや他の設定クラスを置く
+        │   └── MyBatisConfig.java    # MyBatisの設定クラス
+        ├── controller                # コントローラークラスを置く
+        │   └── MyController.java
+        ├── domain                    # ドメイン（エンティティ）クラスを置く
+        │   └── MyEntity.java
+        ├── dto                       # DTO（データ転送オブジェクト）クラスを置く
+        │   └── MyDto.java
+        ├── mapper                    # MyBatisのMapperインターフェースを置く
+        │   └── MyMapper.java
+        ├── repository                # リポジトリクラスを置く
+        │   └── MyRepository.java
+        ├── service                   # サービスクラスを置く
+        │   └── MyService.java
+        └── util                      # ユーティリティクラスを置く
+            └── MyUtil.java
+
+src/main/resources
+└── mapper                            # MyBatisのMapper XMLファイルを置く
+    └── MyMapper.xml
+└── application.properties            # Spring Bootの設定ファイル
+
+
+ディレクトリ詳細
+config: 設定関連のクラスを置きます。MyBatisの設定やデータソースの設定などを含めます。
+controller: コントローラークラスを置きます。ユーザーからのリクエストを受け取り、サービスに処理を委譲します。
+domain: ドメイン（エンティティ）クラスを置きます。データベースのテーブルとマッピングするクラスです。
+dto: データ転送オブジェクト（DTO）クラスを置きます。クライアントとやり取りするためのデータを保持するクラスです。
+mapper: MyBatisのMapperインターフェースを置きます。SQLクエリを定義する場所です。
+repository: リポジトリクラスを置きます。データアクセスを抽象化し、ビジネスロジックから切り離します。
+service: サービスクラスを置きます。ビジネスロジックを実装します。
+util: ユーティリティクラスを置きます。アプリケーション全体で共通して使用される機能を含めます。
+
+
+`src/main/resources/mapper/MyMapper.xml:`
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.MyMapper">
+
+  <select id="selectAll" resultType="com.example.domain.MyEntity">
+    SELECT * FROM my_table
+  </select>
+
+</mapper>
+

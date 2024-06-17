@@ -1,10 +1,10 @@
-package net.hollage.horseracing.service;
+package net.hollage.horseracing.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.hollage.horseracing.domain.TicketDetailForm;
-import net.hollage.horseracing.entity.PurchaseEntity;
-import net.hollage.horseracing.entity.TicketEntity;
+import net.hollage.horseracing.domain.PurchaseEntity;
+import net.hollage.horseracing.domain.TicketEntity;
+import net.hollage.horseracing.dto.TicketDetailForm;
 import org.springframework.stereotype.Component;
 
 /** 入力情報をDB用Entityにマッピングする. */

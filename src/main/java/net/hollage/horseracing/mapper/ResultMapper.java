@@ -1,10 +1,10 @@
-package net.hollage.horseracing.service;
+package net.hollage.horseracing.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
-import net.hollage.horseracing.domain.ResultOutDto;
-import net.hollage.horseracing.entity.ResultEntity;
+import net.hollage.horseracing.domain.ResultEntity;
+import net.hollage.horseracing.dto.ResultOutDto;
 import org.springframework.stereotype.Component;
 
 /** DBの取得結果をDtoにマッピングする. */

@@ -1,7 +1,7 @@
 package net.hollage.horseracing.repository;
 
 import java.util.List;
-import net.hollage.horseracing.entity.ResultEntity;
+import net.hollage.horseracing.domain.ResultEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,6 @@
 package net.hollage.horseracing.repository;
 
-import net.hollage.horseracing.entity.PurchaseEntity;
+import net.hollage.horseracing.domain.PurchaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

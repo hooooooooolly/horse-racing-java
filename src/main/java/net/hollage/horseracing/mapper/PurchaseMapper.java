@@ -1,8 +1,8 @@
-package net.hollage.horseracing.service;
+package net.hollage.horseracing.mapper;
 
 import java.sql.Date;
-import net.hollage.horseracing.domain.RaceDetailForm;
-import net.hollage.horseracing.entity.PurchaseEntity;
+import net.hollage.horseracing.domain.PurchaseEntity;
+import net.hollage.horseracing.dto.RaceDetailForm;
 import org.springframework.stereotype.Component;
 
 /** 入力情報をDB用Entityにマッピングする. */

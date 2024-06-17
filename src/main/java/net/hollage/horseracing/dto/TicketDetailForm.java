@@ -1,4 +1,4 @@
-package net.hollage.horseracing.domain;
+package net.hollage.horseracing.dto;
 
 import jakarta.validation.constraints.Min;
 import lombok.Data;

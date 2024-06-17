@@ -2,10 +2,10 @@ package net.hollage.horseracing.contoller;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
-import net.hollage.horseracing.domain.ResultOutDto;
-import net.hollage.horseracing.entity.ResultEntity;
+import net.hollage.horseracing.domain.ResultEntity;
+import net.hollage.horseracing.dto.ResultOutDto;
+import net.hollage.horseracing.mapper.ResultMapper;
 import net.hollage.horseracing.repository.ResultRepository;
-import net.hollage.horseracing.service.ResultMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;

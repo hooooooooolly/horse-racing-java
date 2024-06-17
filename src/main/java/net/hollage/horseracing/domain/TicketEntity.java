@@ -1,4 +1,4 @@
-package net.hollage.horseracing.entity;
+package net.hollage.horseracing.domain;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
