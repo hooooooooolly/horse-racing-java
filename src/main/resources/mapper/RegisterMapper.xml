@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.hollage.horseracing.mapper.RegisterMapper">
+
+    <insert id="insertPurchase" useGeneratedKeys="true" keyProperty="id">
+        insert into purchases values (
+        nextval('purchases_seq')
+        , #{purchaseDate}
+        , #{venue}
+        , #{raceNo}
+        , #{grade}
+        , #{raceName}
+        , #{course}
+        , #{distance}
+        , #{courseCondition}
+        , #{age}
+        , #{weight}
+        , false
+        , current_timestamp
+        , current_timestamp
+        )
+    </insert>
+
+    <insert id="insertTicket" useGeneratedKeys="true" keyProperty="id">
+        insert into tickets values
+        <foreach item="item" index="index" collection="list" separator=", ">
+            (
+            nextval('tickets_seq')
+            , #{item.purchases.id}
+            , #{item.ticketCode}
+            , #{item.quantity}
+            , null
+            , #{item.stake}
+            , null
+            , false
+            , current_timestamp
+            , current_timestamp
+            )
+        </foreach>
+    </insert>
+
+</mapper>

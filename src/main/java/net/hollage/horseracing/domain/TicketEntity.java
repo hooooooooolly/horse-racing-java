@@ -35,13 +35,13 @@ public class TicketEntity implements DetailEntity {
 
   /** 論理削除フラグ */
   @Column(name = "is_deleted", nullable = false)
-  private Boolean isDeleted = false;
+  private Boolean isDeleted;
 
   /** 登録日時 */
   @Column(name = "created_at", nullable = false)
-  private LocalDateTime createdAt = LocalDateTime.now();
+  private LocalDateTime createdAt;
 
   /** 更新日時 */
   @Column(name = "updated_at", nullable = false)
-  private LocalDateTime updatedAt = LocalDateTime.now();
+  private LocalDateTime updatedAt;
 }

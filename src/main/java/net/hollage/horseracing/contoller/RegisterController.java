@@ -7,10 +7,9 @@ import net.hollage.horseracing.domain.PurchaseEntity;
 import net.hollage.horseracing.domain.TicketEntity;
 import net.hollage.horseracing.dto.RaceDetailForm;
 import net.hollage.horseracing.dto.TicketDetailForm;
-import net.hollage.horseracing.mapper.PurchaseMapper;
-import net.hollage.horseracing.mapper.TicketMapper;
-import net.hollage.horseracing.repository.PurchaseRepository;
-import net.hollage.horseracing.repository.TicketRepository;
+import net.hollage.horseracing.mapper.RegisterMapper;
+import net.hollage.horseracing.service.RegisterService;
+import org.modelmapper.ModelMapper;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,17 +20,15 @@ import org.springframework.web.servlet.ModelAndView;
 @AllArgsConstructor
 @RestController
 public class RegisterController {
-  /** 購入情報 */
-  private final PurchaseRepository purchaseRepository;
 
-  /** 馬券情報 */
-  private final TicketRepository ticketRepository;
-
-  /** 購入情報マッパー */
-  private final PurchaseMapper purchaseMapper;
+  /** SQLMapper */
+  private final RegisterMapper registerMapper;
 
   /** 馬券情報マッパー */
-  private final TicketMapper ticketMapper;
+  private final RegisterService registerService;
+
+  /** ModelMapper */
+  private final ModelMapper modelMapper;
 
   @GetMapping("/register")
   public ModelAndView getRegister(ModelAndView mav) {
@@ -52,10 +49,10 @@ public class RegisterController {
     if (resultRace.hasErrors() || resultTicket.hasErrors()) {
       return mav;
     }
-    PurchaseEntity pe = purchaseMapper.convert(raceDetailForm);
-    purchaseRepository.saveAndFlush(pe);
-    List<TicketEntity> teList = ticketMapper.convert(ticketDetailForm, pe);
-    ticketRepository.saveAllAndFlush(teList);
+    PurchaseEntity pe = modelMapper.map(raceDetailForm, PurchaseEntity.class);
+    registerMapper.insertPurchase(pe);
+    List<TicketEntity> teList = registerService.convert(ticketDetailForm, pe);
+    registerMapper.insertTicket(teList);
 
     mav.setViewName("register");
     return mav;

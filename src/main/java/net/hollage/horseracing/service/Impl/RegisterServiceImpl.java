@@ -1,23 +1,17 @@
-package net.hollage.horseracing.mapper;
+package net.hollage.horseracing.service.Impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import net.hollage.horseracing.domain.PurchaseEntity;
 import net.hollage.horseracing.domain.TicketEntity;
 import net.hollage.horseracing.dto.TicketDetailForm;
-import org.springframework.stereotype.Component;
+import net.hollage.horseracing.service.RegisterService;
 
-/** 入力情報をDB用Entityにマッピングする. */
-@Component
-public class TicketMapper {
+public class RegisterServiceImpl implements RegisterService {
   private PurchaseEntity pe;
 
-  /**
-   * 購入馬券情報をDB用EntityListにマッピングする.
-   *
-   * @param form 購入馬券情報
-   * @return 加工後のEntityList
-   */
+  @Override
   public List<TicketEntity> convert(TicketDetailForm form, PurchaseEntity pe) {
     this.pe = pe;
     List<TicketEntity> ticketEntityList = new ArrayList<>();
@@ -30,7 +24,7 @@ public class TicketMapper {
         getEntity(6, form.getQuantityThreeMultiple(), form.getStakeThreeMultiple()));
     ticketEntityList.add(getEntity(7, form.getQuantityTwoWide(), form.getStakeTwoWide()));
     ticketEntityList.add(getEntity(8, form.getQuantityTwoFrame(), form.getStakeTwoFrame()));
-    return ticketEntityList.stream().filter(x -> x != null).toList();
+    return ticketEntityList.stream().filter(Objects::nonNull).toList();
   }
 
   /**
