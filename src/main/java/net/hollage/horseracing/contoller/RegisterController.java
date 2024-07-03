@@ -21,11 +21,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class RegisterController {
 
-  /** SQLMapper */
+  /** MyBatisMapper */
   private final RegisterMapper registerMapper;
 
-  /** 馬券情報マッパー */
-  private final RegisterService registerService;
+  /** Service */
+  private final RegisterService service;
 
   /** ModelMapper */
   private final ModelMapper modelMapper;
@@ -51,7 +51,7 @@ public class RegisterController {
     }
     PurchaseEntity pe = modelMapper.map(raceDetailForm, PurchaseEntity.class);
     registerMapper.insertPurchase(pe);
-    List<TicketEntity> teList = registerService.convert(ticketDetailForm, pe);
+    List<TicketEntity> teList = service.convert(ticketDetailForm, pe);
     registerMapper.insertTicket(teList);
 
     mav.setViewName("register");

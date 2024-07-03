@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+table {
+    margin: auto;
+}
+
+label {
+    font-size: large;
+    font-weight: bold;
+}
+
+table.table {
+    width: 60%;
+}
+
+hr.spacer {
+    margin: 2rem auto;
+    width: 0;
+}
+
+/* センターライン */
+hr.center-line {
+    border-top: 3px dashed forestGreen;
+    margin: 3rem auto;
+    width: 100%;
+}
+
+td.align-left {
+    text-align: left;
+}

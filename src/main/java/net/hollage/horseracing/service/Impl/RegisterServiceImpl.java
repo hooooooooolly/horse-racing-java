@@ -7,7 +7,9 @@ import net.hollage.horseracing.domain.PurchaseEntity;
 import net.hollage.horseracing.domain.TicketEntity;
 import net.hollage.horseracing.dto.TicketDetailForm;
 import net.hollage.horseracing.service.RegisterService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RegisterServiceImpl implements RegisterService {
   private PurchaseEntity pe;
 

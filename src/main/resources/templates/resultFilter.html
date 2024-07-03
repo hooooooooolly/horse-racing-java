@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{common/header :: head_fragment(title = '詳細成績閲覧', scripts = ~{}, links = ~{::link})}">
+    <link rel="stylesheet" th:href="@{/css/resultFilter.css}">
+</head>
+
+<body>
+<div class="container">
+    <h1>詳細成績閲覧</h1>
+    <hr class="spacer"/>
+    <!-- 検索エリア -->
+    <form th:action="@{/resultFilter/search}" method="post">
+        <table class="table table-hover" th:object="${form}">
+            <h2 th:text="検索条件"/>
+            <tr>
+                <td>
+                    <label th:text="開催日"/>
+                </td>
+                <td>
+                    <input id="search-start" class="date" th:field="*{purchaseDateStart}" type="date"/>
+                </td>
+                <td>
+                    <label th:text=" ～ "/>
+                </td>
+                <td>
+                    <input id="search-end" class="date" th:field="*{purchaseDateEnd}" type="date"/>
+                </td>
+            </tr>
+            <!-- 競馬場 -->
+            <tr>
+                <td>
+                    <label th:text="競馬場"/>
+                </td>
+                <td colspan="3" class="align-left">
+                    <input id="venue" class="text" th:field="*{venue}" type="text"/>
+                    <div th:if="${#fields.hasErrors('venue')}" th:text="20文字以内で入力してください！"/>
+                </td>
+            </tr>
+            <!-- レース番号 -->
+            <tr>
+                <td>
+                    <label th:text="レース番号"/>
+                </td>
+                <td colspan="3" class="align-left">
+                    <input id="race-no" class="number" th:field="*{raceNo}" type="number"/>
+                    <div th:if="${#fields.hasErrors('raceNo')}" th:text="1～12の数値で入力してください！"/>
+                </td>
+            </tr>
+            <!-- グレード -->
+            <tr>
+                <td>
+                    <label th:text="グレード"/>
+                </td>
+                <td colspan="3" class="align-left">
+                    <input id="grade" class="text" th:field="*{grade}" type="text"/>
+                    <div th:if="${#fields.hasErrors('grade')}" th:text="10文字以内で入力してください！"/>
+                </td>
+            </tr>
+            <!-- レース名 -->
+            <tr>
+                <td>
+                    <label th:text="レース名"/>
+                </td>
+                <td colspan="3" class="align-left">
+                    <input id="raceName" class="text" th:field="*{raceName}" type="text"/>
+                    <div th:if="${#fields.hasErrors('raceName')}" th:text="30文字以内で入力してください！"/>
+                </td>
+            </tr>
+            <!-- コース -->
+            <tr>
+                <td>
+                    <label th:text="コース"/>
+                </td>
+                <td colspan="3" class="align-left">
+                    <input id="course" class="text" th:field="*{course}" type="text"/>
+                    <div th:if="${#fields.hasErrors('course')}" th:text="1～50の数値で入力してください！"/>
+                </td>
+            </tr>
+            <!-- 距離 -->
+            <tr>
+                <td>
+                    <label th:text="距離"/>
+                </td>
+                <td>
+                    <input id="distance-start" class="date" th:field="*{distanceStart}" type="number"/>m
+                </td>
+                <td>
+                    <label th:text=" ～ "/>
+                </td>
+                <td>
+                    <input id="distance-end" class="date" th:field="*{distanceEnd}" type="number"/>m
+                </td>
+                <div th:if="${#fields.hasErrors('distanceStart') || #fields.hasErrors('distanceEnd')}"
+                     th:text="1000～5000mで入力してください！"/>
+            </tr>
+            <!-- 馬場状態 -->
+            <tr>
+                <td>
+                    <label th:text="馬場状態"/>
+                </td>
+                <td colspan="3" class="align-left">
+                    <input id="courseCondition" class="text" th:field="*{courseCondition}" type="text"/>
+                    <div th:if="${#fields.hasErrors('courseCondition')}" th:text="2文字以内で入力してください！"/>
+                </td>
+            </tr>
+            <!-- 年齢 -->
+            <tr>
+                <td>
+                    <label th:text="年齢"/>
+                </td>
+                <td colspan="3" class="align-left">
+                    <input id="age" class="text" th:field="*{age}" type="text"/>
+                    <div th:if="${#fields.hasErrors('age')}" th:text="4文字以内で入力してください！"/>
+                </td>
+            </tr>
+            <!-- 重量 -->
+            <tr>
+                <td>
+                    <label th:text="重量"/>
+                </td>
+                <td colspan="3" class="align-left">
+                    <input id="weight" class="text" th:field="*{weight}" type="text"/>
+                    <div th:if="${#fields.hasErrors('weight')}" th:text="3文字以内で入力してください！"/>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="検索">
+    </form>
+    <hr class="center-line"/>
+
+
+    <!--    <hr class="spacer"/>-->
+    <!-- 結果表示エリア -->
+    <table>
+        hoge
+    </table>
+
+    <!-- 戻るボタン -->
+    <button type="button" onclick="goBack()">戻る</button>
+</div>
+<script th:src="@{/js/resultFilter.js}"></script>
+</body>
+</html>
