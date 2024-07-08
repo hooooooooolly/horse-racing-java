@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.hollage.horseracing.mapper.ResultFilterMapper">
+
+    <select id="selectResult" resultType="net.hollage.horseracing.dto.ResultOutDto">
+        select
+        cm.code_value
+        , cm.code_name as ticketType
+        , sum(tic.quantity) as purchasePair
+        , sum(tic.hit_pair) as hitPair
+        , sum(tic.stake) as purchaseAmount
+        , sum(tic.collection_amount) as collectionAmount
+        from
+        purchases pur
+        left outer join tickets tic
+        on pur.id = tic.purchase_id
+        and pur.is_deleted = false
+        and tic.is_deleted = false
+        left outer join code_master cm
+        on cm.code_category = '券種'
+        and tic.ticket_code = cm.code_value
+        and cm.is_deleted = false
+        <where>
+            <if test="purchaseDateStart != null">
+                #{purchaseDateStart} <![CDATA[<=]]> pur.purchase_date
+            </if>
+            <if test="purchaseDateEnd != null">
+                and pur.purchase_date <![CDATA[<=]]> #{purchaseDateEnd}
+            </if>
+            <if test="venue != null">
+                and pur.venue = #{venue}
+            </if>
+            <if test="raceNo != null">
+                and pur.raceNo = #{raceNo}
+            </if>
+            <if test="grade != null">
+                and pur.grade = #{grade}
+            </if>
+            <if test="raceName != null">
+                and pur.raceName = #{raceName}
+            </if>
+            <if test="course != null">
+                and pur.course = #{course}
+            </if>
+            <if test="distanceStart != null">
+                and #{distanceStart} <![CDATA[<=]]> pur.distance
+            </if>
+            <if test="distanceEnd != null">
+                and pur.distance <![CDATA[<=]]> #{distanceEnd}
+            </if>
+            <if test="courseCondition != null">
+                and pur.course_condition = #{courseCondition}
+            </if>
+            <if test="age != null">
+                and pur.age = #{age}
+            </if>
+            <if test="weight != null">
+                and pur.weight = #{weight}
+            </if>
+        </where>
+        group by
+        cm.code_name
+        , cm.code_value
+        order by cm.code_value
+    </select>
+</mapper>

@@ -4,7 +4,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import net.hollage.horseracing.domain.ResultEntity;
 import net.hollage.horseracing.dto.ResultOutDto;
-import net.hollage.horseracing.mapper.ResultMapper;
+import net.hollage.horseracing.mapper.ResultMapper2;
 import net.hollage.horseracing.repository.ResultRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +18,7 @@ public class ResultController {
   private final ResultRepository resultRepository;
 
   /** 結果加工用Mapper */
-  private final ResultMapper resultMapper;
+  private final ResultMapper2 resultMapper;
 
   @GetMapping("/result")
   public ModelAndView getResult(ModelAndView mav) {

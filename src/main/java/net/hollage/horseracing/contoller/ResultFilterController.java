@@ -1,7 +1,12 @@
 package net.hollage.horseracing.contoller;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import net.hollage.horseracing.dto.ResultFilterForm;
+import net.hollage.horseracing.dto.ResultFilterInDto;
+import net.hollage.horseracing.dto.ResultOutDto;
+import net.hollage.horseracing.mapper.ResultFilterMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +19,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RestController
 public class ResultFilterController {
 
-  /** 画面に表示する結果情報 */
-  //  private final ResultRepository resultRepository;
+  /** MyBatisMapper */
+  private final ResultFilterMapper resultMapper;
 
-  /** 結果加工用Mapper */
-  //  private final ResultMapper resultMapper;
+  /** ModelMapper */
+  private final ModelMapper modelMapper;
 
   @GetMapping("/resultFilter")
   public ModelAndView getResultFilter(ModelAndView mav) {
@@ -35,7 +40,9 @@ public class ResultFilterController {
     if (bindingResult.hasErrors()) {
       return mav;
     }
-    System.out.println(form);
+    ResultFilterInDto inDto = modelMapper.map(form, ResultFilterInDto.class);
+    List<ResultOutDto> outDto = resultMapper.selectResult(inDto);
+    System.out.println(outDto);
 
     mav.setViewName("resultFilter");
     return mav;

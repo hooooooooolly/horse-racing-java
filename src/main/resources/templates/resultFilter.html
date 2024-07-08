@@ -31,7 +31,7 @@
                 <td>
                     <label th:text="競馬場"/>
                 </td>
-                <td colspan="3" class="align-left">
+                <td colspan="3">
                     <input id="venue" class="text" th:field="*{venue}" type="text"/>
                     <div th:if="${#fields.hasErrors('venue')}" th:text="20文字以内で入力してください！"/>
                 </td>
@@ -41,7 +41,7 @@
                 <td>
                     <label th:text="レース番号"/>
                 </td>
-                <td colspan="3" class="align-left">
+                <td colspan="3">
                     <input id="race-no" class="number" th:field="*{raceNo}" type="number"/>
                     <div th:if="${#fields.hasErrors('raceNo')}" th:text="1～12の数値で入力してください！"/>
                 </td>
@@ -51,7 +51,7 @@
                 <td>
                     <label th:text="グレード"/>
                 </td>
-                <td colspan="3" class="align-left">
+                <td colspan="3">
                     <input id="grade" class="text" th:field="*{grade}" type="text"/>
                     <div th:if="${#fields.hasErrors('grade')}" th:text="10文字以内で入力してください！"/>
                 </td>
@@ -61,7 +61,7 @@
                 <td>
                     <label th:text="レース名"/>
                 </td>
-                <td colspan="3" class="align-left">
+                <td colspan="3">
                     <input id="raceName" class="text" th:field="*{raceName}" type="text"/>
                     <div th:if="${#fields.hasErrors('raceName')}" th:text="30文字以内で入力してください！"/>
                 </td>
@@ -71,7 +71,7 @@
                 <td>
                     <label th:text="コース"/>
                 </td>
-                <td colspan="3" class="align-left">
+                <td colspan="3">
                     <input id="course" class="text" th:field="*{course}" type="text"/>
                     <div th:if="${#fields.hasErrors('course')}" th:text="1～50の数値で入力してください！"/>
                 </td>
@@ -98,7 +98,7 @@
                 <td>
                     <label th:text="馬場状態"/>
                 </td>
-                <td colspan="3" class="align-left">
+                <td colspan="3">
                     <input id="courseCondition" class="text" th:field="*{courseCondition}" type="text"/>
                     <div th:if="${#fields.hasErrors('courseCondition')}" th:text="2文字以内で入力してください！"/>
                 </td>
@@ -108,7 +108,7 @@
                 <td>
                     <label th:text="年齢"/>
                 </td>
-                <td colspan="3" class="align-left">
+                <td colspan="3">
                     <input id="age" class="text" th:field="*{age}" type="text"/>
                     <div th:if="${#fields.hasErrors('age')}" th:text="4文字以内で入力してください！"/>
                 </td>
@@ -118,7 +118,7 @@
                 <td>
                     <label th:text="重量"/>
                 </td>
-                <td colspan="3" class="align-left">
+                <td colspan="3">
                     <input id="weight" class="text" th:field="*{weight}" type="text"/>
                     <div th:if="${#fields.hasErrors('weight')}" th:text="3文字以内で入力してください！"/>
                 </td>
