@@ -9,7 +9,7 @@
     <h1>詳細成績閲覧</h1>
     <hr class="spacer"/>
     <!-- 検索エリア -->
-    <form th:action="@{/resultFilter/search}" method="post">
+    <form th:action="@{/resultFilter}" method="post">
         <table class="table table-hover" th:object="${form}">
             <h2 th:text="検索条件"/>
             <tr>
@@ -127,12 +127,18 @@
         <input type="submit" value="検索">
     </form>
     <hr class="center-line"/>
-
-
-    <!--    <hr class="spacer"/>-->
     <!-- 結果表示エリア -->
-    <table>
-        hoge
+    <table class="table table-hover">
+        <tr>
+            <th th:text="馬券種類"/>
+            <th th:text="的中率"/>
+            <th th:text="回収率"/>
+        </tr>
+        <tr th:each="dto : ${outDtoList}">
+            <td class="td-kind" th:text="${dto.ticketType}"></td>
+            <td th:text="${dto.hitRate}"></td>
+            <td th:text="${dto.recoveryRate}"></td>
+        </tr>
     </table>
 
     <!-- 戻るボタン -->

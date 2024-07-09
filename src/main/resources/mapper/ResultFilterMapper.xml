@@ -21,40 +21,40 @@
         and tic.ticket_code = cm.code_value
         and cm.is_deleted = false
         <where>
-            <if test="purchaseDateStart != null">
+            <if test="purchaseDateStart != null and purchaseDateStart != ''">
                 #{purchaseDateStart} <![CDATA[<=]]> pur.purchase_date
             </if>
-            <if test="purchaseDateEnd != null">
+            <if test="purchaseDateEnd != null and purchaseDateEnd != ''">
                 and pur.purchase_date <![CDATA[<=]]> #{purchaseDateEnd}
             </if>
-            <if test="venue != null">
+            <if test="venue != null and venue != ''">
                 and pur.venue = #{venue}
             </if>
-            <if test="raceNo != null">
+            <if test="raceNo != null and raceNo != ''">
                 and pur.raceNo = #{raceNo}
             </if>
-            <if test="grade != null">
+            <if test="grade != null and grade != ''">
                 and pur.grade = #{grade}
             </if>
-            <if test="raceName != null">
-                and pur.raceName = #{raceName}
+            <if test="raceName != null and raceName != ''">
+                and pur.race_name = #{raceName}
             </if>
-            <if test="course != null">
+            <if test="course != null and course != ''">
                 and pur.course = #{course}
             </if>
-            <if test="distanceStart != null">
+            <if test="distanceStart != null and distanceStart != ''">
                 and #{distanceStart} <![CDATA[<=]]> pur.distance
             </if>
-            <if test="distanceEnd != null">
+            <if test="distanceEnd != null and distanceEnd != ''">
                 and pur.distance <![CDATA[<=]]> #{distanceEnd}
             </if>
-            <if test="courseCondition != null">
+            <if test="courseCondition != null and courseCondition != ''">
                 and pur.course_condition = #{courseCondition}
             </if>
-            <if test="age != null">
+            <if test="age != null and age != ''">
                 and pur.age = #{age}
             </if>
-            <if test="weight != null">
+            <if test="weight != null and weight != ''">
                 and pur.weight = #{weight}
             </if>
         </where>

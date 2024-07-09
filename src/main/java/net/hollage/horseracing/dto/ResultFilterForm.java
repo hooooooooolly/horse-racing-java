@@ -3,16 +3,17 @@ package net.hollage.horseracing.dto;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
+import java.time.LocalDate;
 import lombok.Data;
 
 @Data
 public class ResultFilterForm implements DetailForm {
 
   /** 抽出日（開始） */
-  private String purchaseDateStart;
+  private LocalDate purchaseDateStart;
 
   /** 抽出日（終了） */
-  private String purchaseDateEnd;
+  private LocalDate purchaseDateEnd;
 
   /** 競馬場 */
   @Size(max = 20)

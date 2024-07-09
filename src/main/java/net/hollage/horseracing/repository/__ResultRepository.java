@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 /** 画面に表示する結果情報 */
 @Repository
-public interface ResultRepository extends JpaRepository<ResultEntity, Long> {
+public interface __ResultRepository extends JpaRepository<ResultEntity, Long> {
 
   /**
    * 総合成績（今年）を求めるSQL.<br>

@@ -28,3 +28,16 @@ hr.center-line {
 td.align-left {
     text-align: left;
 }
+
+table.table.kind {
+    text-align: right;
+    width: 70%;
+}
+
+th {
+    text-align: center;
+}
+
+td.td-kind {
+    text-align: center;
+}

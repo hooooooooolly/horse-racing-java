@@ -32,7 +32,7 @@ public class ResultFilterController {
     return mav;
   }
 
-  @PostMapping("/resultFilter/search")
+  @PostMapping("/resultFilter")
   public ModelAndView searchResult(
       @ModelAttribute("form") @Validated ResultFilterForm form,
       BindingResult bindingResult,
@@ -41,10 +41,34 @@ public class ResultFilterController {
       return mav;
     }
     ResultFilterInDto inDto = modelMapper.map(form, ResultFilterInDto.class);
-    List<ResultOutDto> outDto = resultMapper.selectResult(inDto);
-    System.out.println(outDto);
-
+    List<ResultOutDto> outDtoList = resultMapper.selectResult(inDto);
+    // 的中率と回収率を算出
+    outDtoList.stream()
+        .peek(dto -> dto.setHitRate(calcRate(dto.getPurchasePair(), dto.getHitPair()).toString()))
+        .forEach(
+            dto ->
+                dto.setRecoveryRate(
+                    calcRate(dto.getPurchaseAmount(), dto.getCollectionAmount()).toString()));
+    mav.addObject("outDtoList", outDtoList);
     mav.setViewName("resultFilter");
     return mav;
+  }
+
+  /**
+   * 百分率に変換する.
+   *
+   * @param divided 全体量
+   * @param divisor 的中量
+   * @return 小数第二位を四捨五入した結果
+   */
+  private Double calcRate(String divided, String divisor) {
+    if (divided == null || divisor == null || "0".equals(divided)) {
+      return 0.0d;
+    } else {
+      Long dividedLong = Long.valueOf(divided);
+      Long divisorLong = Long.valueOf(divisor);
+      double rate = ((double) divisorLong / dividedLong) * 100;
+      return Math.round(rate * 100.0) / 100.0;
+    }
   }
 }

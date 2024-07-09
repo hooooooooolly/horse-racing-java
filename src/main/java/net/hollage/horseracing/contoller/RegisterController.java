@@ -10,12 +10,14 @@ import net.hollage.horseracing.dto.TicketDetailForm;
 import net.hollage.horseracing.mapper.RegisterMapper;
 import net.hollage.horseracing.service.RegisterService;
 import org.modelmapper.ModelMapper;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.thymeleaf.util.ListUtils;
 
 @AllArgsConstructor
 @RestController
@@ -50,11 +52,12 @@ public class RegisterController {
       return mav;
     }
     PurchaseEntity pe = modelMapper.map(raceDetailForm, PurchaseEntity.class);
-    registerMapper.insertPurchase(pe);
     List<TicketEntity> teList = service.convert(ticketDetailForm, pe);
-    registerMapper.insertTicket(teList);
-
-    mav.setViewName("register");
+    if (!ObjectUtils.isEmpty(pe) && !ListUtils.isEmpty(teList)) {
+      registerMapper.insertPurchase(pe);
+      registerMapper.insertTicket(teList);
+      mav.setViewName("register");
+    }
     return mav;
   }
 }

@@ -1,12 +1,17 @@
 package net.hollage.horseracing.dto;
 
+import java.time.LocalDate;
+import lombok.Data;
+
+/** 詳細成績検索用inDto */
+@Data
 public class ResultFilterInDto {
 
   /** 抽出日（開始） */
-  private String purchaseDateStart;
+  private LocalDate purchaseDateStart;
 
   /** 抽出日（終了） */
-  private String purchaseDateEnd;
+  private LocalDate purchaseDateEnd;
 
   /** 競馬場 */
   private String venue;

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 /** DBの取得結果をDtoにマッピングする. */
 @Component
-public class ResultMapper2 {
+public class __ResultMapper {
 
   /** 数値のフォーマッター(1000 -> 1,000) */
   Function<Integer, String> formatFunc = num -> String.format("%,d", num);
