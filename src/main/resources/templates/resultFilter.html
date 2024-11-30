@@ -136,8 +136,10 @@
         </tr>
         <tr th:each="dto : ${outDtoList}">
             <td class="td-kind" th:text="${dto.ticketType}"></td>
-            <td th:text="${dto.hitRate}"></td>
-            <td th:text="${dto.recoveryRate}"></td>
+            <td class="align-right"
+                th:text="${dto.hitRate} + ' %（' + ${dto.hitPair} + ' / ' + ${dto.purchasePair} + ' 組）'"></td>
+            <td class="align-right"
+                th:text="${dto.recoveryRate} + ' %（ ' + ${dto.collectionAmount}+ ' / ' + ${dto.purchaseAmount} + ' 円）'"></td>
         </tr>
     </table>
 

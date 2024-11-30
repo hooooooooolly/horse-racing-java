@@ -3,7 +3,7 @@ package net.hollage.horseracing.service;
 import java.util.List;
 import net.hollage.horseracing.domain.PurchaseEntity;
 import net.hollage.horseracing.domain.TicketEntity;
-import net.hollage.horseracing.dto.TicketDetailForm;
+import net.hollage.horseracing.dto.request.TicketDetailForm;
 
 /** RegisterServiceインターフェース. */
 public interface RegisterService {

@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS public.purchases
     id integer NOT NULL DEFAULT nextval('purchases_seq'::regclass),
     purchase_date date NOT NULL,
     venue character varying(15) COLLATE pg_catalog."default" NOT NULL,
-    race_no character varying(2) COLLATE pg_catalog."default" NOT NULL,
+    race_no integer NOT NULL,
     grade character varying(10) COLLATE pg_catalog."default",
     race_name character varying(30) COLLATE pg_catalog."default",
     course character varying(3) COLLATE pg_catalog."default",

@@ -1,28 +1,43 @@
-src/main/java
-└── com
-    └── example
-        ├── MyApplication.java        # Spring Bootのメインアプリケーションクラス
-        ├── config                    # MyBatisや他の設定クラスを置く
-        │   └── MyBatisConfig.java    # MyBatisの設定クラス
-        ├── controller                # コントローラークラスを置く
-        │   └── MyController.java
-        ├── domain                    # ドメイン（エンティティ）クラスを置く
-        │   └── MyEntity.java
-        ├── dto                       # DTO（データ転送オブジェクト）クラスを置く
-        │   └── MyDto.java
-        ├── mapper                    # MyBatisのMapperインターフェースを置く
-        │   └── MyMapper.java
-        ├── repository                # リポジトリクラスを置く
-        │   └── MyRepository.java
-        ├── service                   # サービスクラスを置く
-        │   └── MyService.java
-        └── util                      # ユーティリティクラスを置く
-            └── MyUtil.java
+com.example.project
+├── controller
+│   ├── UserController.java
+│   └── ...
+├── service
+│   ├── UserService.java
+│   ├── UserServiceImpl.java
+│   └── ...
+├── repository
+│   ├── UserRepository.java
+│   └── ...
+├── mapper
+│   ├── UserMapper.java
+│   └── ...
+├── entity
+│   ├── UserEntity.java
+│   └── ...
+├── dto
+│   ├── request
+│   │   └── CreateUserRequestDto.java
+│   ├── response
+│   │   └── UserResponseDto.java
+│   └── view
+│       └── UserViewModel.java
+├── config
+│   ├── MyBatisConfig.java
+│   └── ...
+└── resources
+    ├── application.properties
+    ├── static
+    │   ├── css
+    │   ├── js
+    │   └── ...
+    └── templates
+        ├── user
+        │   ├── userList.html
+        │   ├── userDetail.html
+        │   └── ...
+        └── ...
 
-src/main/resources
-└── mapper                            # MyBatisのMapper XMLファイルを置く
-    └── MyMapper.xml
-└── application.properties            # Spring Bootの設定ファイル
 
 
 ディレクトリ詳細

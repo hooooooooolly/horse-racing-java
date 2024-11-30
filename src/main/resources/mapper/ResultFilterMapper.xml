@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.hollage.horseracing.mapper.ResultFilterMapper">
 
-    <select id="selectResult" resultType="net.hollage.horseracing.dto.ResultOutDto">
+    <select id="selectResult" resultType="net.hollage.horseracing.dto.view.ResultViewModel">
         select
         cm.code_value
         , cm.code_name as ticketType
@@ -21,17 +21,17 @@
         and tic.ticket_code = cm.code_value
         and cm.is_deleted = false
         <where>
-            <if test="purchaseDateStart != null and purchaseDateStart != ''">
+            <if test="purchaseDateStart != null">
                 #{purchaseDateStart} <![CDATA[<=]]> pur.purchase_date
             </if>
-            <if test="purchaseDateEnd != null and purchaseDateEnd != ''">
+            <if test="purchaseDateEnd != null">
                 and pur.purchase_date <![CDATA[<=]]> #{purchaseDateEnd}
             </if>
             <if test="venue != null and venue != ''">
                 and pur.venue = #{venue}
             </if>
-            <if test="raceNo != null and raceNo != ''">
-                and pur.raceNo = #{raceNo}
+            <if test="raceNo != null">
+                and pur.race_no = #{raceNo}
             </if>
             <if test="grade != null and grade != ''">
                 and pur.grade = #{grade}
@@ -42,10 +42,10 @@
             <if test="course != null and course != ''">
                 and pur.course = #{course}
             </if>
-            <if test="distanceStart != null and distanceStart != ''">
+            <if test="distanceStart != null">
                 and #{distanceStart} <![CDATA[<=]]> pur.distance
             </if>
-            <if test="distanceEnd != null and distanceEnd != ''">
+            <if test="distanceEnd != null">
                 and pur.distance <![CDATA[<=]]> #{distanceEnd}
             </if>
             <if test="courseCondition != null and courseCondition != ''">

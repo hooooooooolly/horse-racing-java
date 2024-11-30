@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import net.hollage.horseracing.domain.PurchaseEntity;
 import net.hollage.horseracing.domain.TicketEntity;
-import net.hollage.horseracing.dto.TicketDetailForm;
+import net.hollage.horseracing.dto.request.TicketDetailForm;
 import net.hollage.horseracing.service.RegisterService;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class RegisterServiceImpl implements RegisterService {
   private PurchaseEntity pe;
 
+  /** {@inheritDoc} */
   @Override
   public List<TicketEntity> convert(TicketDetailForm form, PurchaseEntity pe) {
     this.pe = pe;

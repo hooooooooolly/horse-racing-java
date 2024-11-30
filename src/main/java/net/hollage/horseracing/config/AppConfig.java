@@ -1,4 +1,4 @@
-package net.hollage.horseracing;
+package net.hollage.horseracing.config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

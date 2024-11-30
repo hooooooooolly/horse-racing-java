@@ -3,9 +3,9 @@ package net.hollage.horseracing.contoller;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import net.hollage.horseracing.domain.ResultEntity;
-import net.hollage.horseracing.dto.ResultOutDto;
-import net.hollage.horseracing.mapper.__ResultMapper;
-import net.hollage.horseracing.repository.__ResultRepository;
+import net.hollage.horseracing.dto.view.ResultViewModel;
+import net.hollage.horseracing.mapper.ResultMapper;
+import net.hollage.horseracing.service.ResultService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,28 +15,28 @@ import org.springframework.web.servlet.ModelAndView;
 public class ResultController {
 
   /** 画面に表示する結果情報 */
-  private final __ResultRepository resultRepository;
+  private final ResultMapper resultMapper;
 
-  /** 結果加工用Mapper */
-  private final __ResultMapper resultMapper;
+  /** サービスクラス */
+  private final ResultService resultService;
 
   @GetMapping("/result")
   public ModelAndView getResult(ModelAndView mav) {
     // 総合成績（今年）
-    ResultEntity thisYearTotalEntity = resultRepository.findThisYearTotal();
-    ResultOutDto thisYearTotalOutDto = resultMapper.convert(thisYearTotalEntity);
+    ResultEntity thisYearTotalEntity = resultMapper.findThisYearTotal();
+    ResultViewModel thisYearTotalOutDto = resultService.convert(thisYearTotalEntity);
 
     // 馬券種別成績（今年）
-    List<ResultEntity> thisYearKindEntityList = resultRepository.findThisYearKind();
-    List<ResultOutDto> thisYearKindOutDtoList = resultMapper.convert(thisYearKindEntityList);
+    List<ResultEntity> thisYearKindEntityList = resultMapper.findThisYearKind();
+    List<ResultViewModel> thisYearKindOutDtoList = resultService.convert(thisYearKindEntityList);
 
     // 総合成績（通算）
-    ResultEntity overYearTotalEntity = resultRepository.findTotal();
-    ResultOutDto overYearTotalOutDto = resultMapper.convert(overYearTotalEntity);
+    ResultEntity overYearTotalEntity = resultMapper.findTotal();
+    ResultViewModel overYearTotalOutDto = resultService.convert(overYearTotalEntity);
 
     // 馬券種別成績（通算）
-    List<ResultEntity> overYearKindEntityList = resultRepository.findKind();
-    List<ResultOutDto> overYearKindOutDtoList = resultMapper.convert(overYearKindEntityList);
+    List<ResultEntity> overYearKindEntityList = resultMapper.findKind();
+    List<ResultViewModel> overYearKindOutDtoList = resultService.convert(overYearKindEntityList);
 
     mav.addObject("thisYearTotalOutDto", thisYearTotalOutDto);
     mav.addObject("thisYearKindOutDtoList", thisYearKindOutDtoList);

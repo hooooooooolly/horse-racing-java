@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.hollage.horseracing.mapper.ResultMapper">
+
+    <select id="findThisYearTotal" resultType="net.hollage.horseracing.domain.ResultEntity">
+        select
+        NULL as id
+        , to_char(purchases.purchase_date, 'YYYY') as purchase_year
+        , NULL as ticket_id
+        , NULL as ticket_code
+        , sum(quantity) as purchase_pair
+        , sum(hit_pair) as hit_pair
+        , sum(stake) as purchase_amount
+        , sum(collection_amount) as collection_amount
+        from
+        tickets
+        left outer join purchases
+        on tickets.purchase_id = purchases.id
+        and purchases.is_deleted = false
+        where tickets.is_deleted = false
+        and tickets.hit_pair is not NULL
+        and tickets.collection_amount is not NULL
+        and to_char(purchases.purchase_date, 'YYYY') = to_char(current_date, 'YYYY')
+        group by to_char(purchases.purchase_date, 'YYYY')
+        order by purchase_year
+    </select>
+
+    <select id="findThisYearKind" resultType="net.hollage.horseracing.domain.ResultEntity">
+        select
+        max(tickets.id) as id
+        , NULL as purchase_year
+        , tickets.ticket_code as ticket_id
+        , cdm.code_name as ticket_code
+        , sum(quantity) as purchase_pair
+        , sum(hit_pair) as hit_pair
+        , sum(stake) as purchase_amount
+        , sum(collection_amount) as collection_amount
+        from
+        tickets
+        left outer join code_master cdm
+        on tickets.ticket_code = cdm.code_value
+        and cdm.code_category = '券種'
+        and cdm.is_deleted = false
+        where tickets.is_deleted = false
+        and tickets.hit_pair is not NULL
+        and tickets.collection_amount is not NULL
+        group by tickets.ticket_code, cdm.code_name
+        order by ticket_id
+    </select>
+
+    <select id="findTotal" resultType="net.hollage.horseracing.domain.ResultEntity">
+        select
+        NULL as id
+        , NULL as purchase_year
+        , NULL as ticket_id
+        , NULL as ticket_code
+        , sum(quantity) as purchase_pair
+        , sum(hit_pair) as hit_pair
+        , sum(stake) as purchase_amount
+        , sum(collection_amount) as collection_amount
+        from
+        tickets
+        left outer join purchases
+        on tickets.purchase_id = purchases.id
+        and purchases.is_deleted = false
+        where tickets.is_deleted = false
+        and tickets.hit_pair is not NULL
+        and tickets.collection_amount is not NULL
+    </select>
+
+    <select id="findKind" resultType="net.hollage.horseracing.domain.ResultEntity">
+        select
+        max(tickets.id) as id
+        , NULL as purchase_year
+        , tickets.ticket_code as ticket_id
+        , cdm.code_name as ticket_code
+        , sum(quantity) as purchase_pair
+        , sum(hit_pair) as hit_pair
+        , sum(stake) as purchase_amount
+        , sum(collection_amount) as collection_amount
+        from
+        tickets
+        left outer join code_master cdm
+        on tickets.ticket_code = cdm.code_value
+        and cdm.code_category = '券種'
+        and cdm.is_deleted = false
+        where tickets.is_deleted = false
+        and tickets.hit_pair is not NULL
+        and tickets.collection_amount is not NULL
+        group by tickets.ticket_code, cdm.code_name
+        order by ticket_id
+    </select>
+</mapper>

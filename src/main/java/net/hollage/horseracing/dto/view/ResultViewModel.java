@@ -1,10 +1,10 @@
-package net.hollage.horseracing.dto;
+package net.hollage.horseracing.dto.view;
 
 import lombok.Data;
 
-/** 結果表示用OutDto */
+/** 結果表示用Dto */
 @Data
-public class ResultOutDto {
+public class ResultViewModel {
 
   /** 馬券種類 */
   private String ticketType;

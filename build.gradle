@@ -9,7 +9,7 @@ group = 'net.hollage'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '21'
+    sourceCompatibility = '23'
 }
 
 configurations {
@@ -50,4 +50,8 @@ idea {
         inheritOutputDirs = false
         outputDir = file("layout.buildDirectory/classes/main/")
     }
+}
+
+springBoot {
+    mainClass = 'net.hollage.horseracing.HorseracingApplication'
 }

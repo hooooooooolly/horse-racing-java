@@ -1,8 +1,8 @@
 package net.hollage.horseracing.mapper;
 
 import java.util.List;
-import net.hollage.horseracing.dto.ResultFilterInDto;
-import net.hollage.horseracing.dto.ResultOutDto;
+import net.hollage.horseracing.domain.ResultFilterEntity;
+import net.hollage.horseracing.dto.view.ResultViewModel;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -14,5 +14,5 @@ public interface ResultFilterMapper {
    * @param inDto 検索条件
    * @return 検索結果
    */
-  public List<ResultOutDto> selectResult(ResultFilterInDto inDto);
+  public List<ResultViewModel> selectResult(ResultFilterEntity inDto);
 }
